@@ -1,16 +1,36 @@
 const express = require('express');
 
+const {
+  createProduct,
+  getAllProducts,
+  getProductById,
+  updateProduct,
+  deleteProduct,
+} = require('../Controllers/product.controller');
 
-
+const { validateProduct } = require('../Middleware/validate.middleware');
 
 const router = express.Router();
 
-router.post('/products',)
+// ─── Route Definitions ────────────────────────────────────────────────────────
+//
+//  Method   Path               Middleware            Handler
+//  ───────  ─────────────────  ────────────────────  ──────────────────
+//  POST     /                  validateProduct       createProduct
+//  GET      /                  —                     getAllProducts
+//  GET      /:id               —                     getProductById
+//  PUT      /:id               validateProduct       updateProduct
+//  DELETE   /:id               —                     deleteProduct
 
-router.get('/products',)
+router
+  .route('/')
+  .post(validateProduct, createProduct)
+  .get(getAllProducts);
 
-router.get('/products/search',)
+router
+  .route('/:id')
+  .get(getProductById)
+  .put(validateProduct, updateProduct)
+  .delete(deleteProduct);
 
-router.put('/products/:id',)
-
-router.delete('/products/:id',)
+module.exports = router;
