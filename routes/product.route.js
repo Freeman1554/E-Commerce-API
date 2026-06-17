@@ -10,6 +10,7 @@ const {
 
 const { validateProduct } = require("../Middleware/validate.middleware");
 const requireAuth = require("../Middleware/requireAuth");
+const authorize = require("../Middleware/authorize");
 
 const router = express.Router();
 
@@ -25,13 +26,13 @@ const router = express.Router();
 
 router
   .route("/")
-  .post(requireAuth, validateProduct, createProduct)
+  .post(requireAuth, authorize("admin"), validateProduct, createProduct) // ADMIN ROLE
   .get(requireAuth, getAllProducts);
 
 router
   .route("/:id")
   .get(requireAuth, getProductById)
-  .put(requireAuth, validateProduct, updateProduct)
-  .delete(requireAuth, deleteProduct);
+  .put(requireAuth, authorize("admin"), validateProduct, updateProduct) // ADMIN ROLE
+  .delete(requireAuth, authorize("admin"), deleteProduct); // ADMIN ROLE
 
 module.exports = router;

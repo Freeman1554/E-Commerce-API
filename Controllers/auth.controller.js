@@ -38,6 +38,7 @@ const registerUser = async (req, res, next) => {
       name,
       email,
       password: hashedPassword,
+      role: "customer",
     });
 
     return res.status(201).json({
@@ -126,8 +127,58 @@ const getCurrentUser = async (req, res) => {
   });
 };
 
+const createAdmin = async (req, res, next) => {
+  try {
+    const schema = Joi.object({
+      name: Joi.string().min(2).required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().min(6).required(),
+    });
+
+    const { error } = schema.validate(req.body);
+
+    if (error) {
+      return res.status(400).json({
+        message: error.details[0].message,
+      });
+    }
+
+    const { name, email, password } = req.body;
+
+    const existingUser = await UserModel.findOne({ email });
+
+    if (existingUser) {
+      return res.status(409).json({
+        message: "Email already registered",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    const admin = await UserModel.create({
+      name,
+      email,
+      password: hashedPassword,
+      role: "admin", // FORCE ADMIN ROLE
+    });
+
+    return res.status(201).json({
+      message: "Admin created successfully",
+      user: {
+        id: admin._id,
+        name: admin.name,
+        email: admin.email,
+        role: admin.role,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getCurrentUser,
+  createAdmin,
 };
