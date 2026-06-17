@@ -9,7 +9,7 @@ const {
 } = require("../Controllers/product.controller");
 
 const { validateProduct } = require("../Middleware/validate.middleware");
-const requireAuth = require("../middlewares/requireAuth");
+const requireAuth = require("../Middleware/requireAuth");
 
 const router = express.Router();
 
