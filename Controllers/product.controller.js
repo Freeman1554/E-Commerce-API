@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Product = require('../models/product.model.js');
+const Product = require('../Models/product.model.js');
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

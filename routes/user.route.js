@@ -16,7 +16,7 @@ router.post('/auth/sign-up', validateUserPost(registerSchema), registerUser, )
 router.post('/auth/login', validateUserPost(loginSchema), loginUser)
 
 router.use(requireAuth)
-// router.use(requireAdmin)
+
 
 
 router.get('/user/search', requireAdmin, getAllUser)

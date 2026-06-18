@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const UserModel = require('../models/user.model.js')
+const UserModel = require('../Models/user.model.js')
 const { updateSchema } = require('../Schema/user.Validator.js')
 
 const getAllUser = async (req, res, next) => {
@@ -66,7 +66,7 @@ const editUserById = async (req, res, next) => {
             req.body.password = await bcrypt.hash(req.body.password, 12)
         }
         const updateUser = await UserModel.findByIdAndUpdate(id, req.body, {new: true})
-        if(!updateUser) throw new Error ("Invalid ID")
+        if(!updateUser)
             return res.status(201).json({message: "Update Successful", data: updateUser})
     } catch (error) {
         next(error)

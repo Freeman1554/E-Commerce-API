@@ -1,5 +1,5 @@
 const {registerSchema, loginSchema} = require('../Schema/user.Validator');
-const UserModel = require('../models/user.model.js')
+const UserModel = require('../Models/user.model.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
