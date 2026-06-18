@@ -1,4 +1,5 @@
 const express = require('express');
+const requireAuth = require('../Middleware/requireAuth.js')
 
 const {
   createProduct,
@@ -9,6 +10,7 @@ const {
 } = require('../Controllers/product.controller');
 
 const { validateProduct } = require('../Middleware/validate.middleware');
+const requireAdmin = require('../Middleware/requireAdmin');
 
 const router = express.Router();
 
@@ -22,15 +24,17 @@ const router = express.Router();
 //  PUT      /:id               validateProduct       updateProduct
 //  DELETE   /:id               —                     deleteProduct
 
+router.use(requireAuth)
+
 router
   .route('/')
-  .post(validateProduct, createProduct)
+  .post(requireAdmin, validateProduct, createProduct)
   .get(getAllProducts);
 
 router
   .route('/:id')
   .get(getProductById)
-  .put(validateProduct, updateProduct)
-  .delete(deleteProduct);
+  .put(requireAdmin, validateProduct, updateProduct)
+  .delete(requireAdmin, deleteProduct);
 
 module.exports = router;

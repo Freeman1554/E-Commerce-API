@@ -5,9 +5,9 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./Config/db.js');
 const logRequest = require('./Middleware/loggers.js');
-const errorhandlers = require('./Middleware/errorHandler.js');
+const errorHandlers = require('./Middleware/errorHandler.js');
 const productRoutes = require('./routes/product.route.js'); 
-// const userRoutes = require('./routes/user.route.js');    // Commented out until Member 2 finishes
+const userRoutes = require('./routes/user.route.js')
 
 const app = express();
 connectDB();
@@ -25,9 +25,13 @@ const PORT = process.env.PORT || 2000;
 
 // Mount your routes perfectly to match your paths
 app.use('/api/products', productRoutes); // This handles all your endpoints under http://localhost:2000/api/products
-// app.use('/api', userRoutes);            // Commented out until Member 2 fixes their handlers
+app.use('/api', userRoutes);  
 
-app.use(errorhandlers);
+
+
+
+
+app.use(errorHandlers);
 
 app.listen(PORT, () => {
     console.log(`Server is running on Port http://localhost:${PORT}`);
