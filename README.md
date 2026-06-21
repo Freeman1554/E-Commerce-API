@@ -1,4 +1,321 @@
-# E-COMMERCE API
+# E-Commerce API
+
+A RESTful E-Commerce API built with Node.js, Express, and MongoDB. The API provides secure product and user management through authentication, authorization, search, filtering, and pagination features.
+
+---
+
+## Overview
+
+This API serves as the backend for an e-commerce platform, allowing applications to manage products and users securely. It provides endpoints for authentication, product management, inventory tracking, and role-based access control.
+
+### Product Attributes
+
+Each product contains the following fields:
+
+* **Name** – Product name
+* **Price** – Product price
+* **Description** – Detailed product information
+* **Category** – Product category
+* **InStock** – Product availability status
+
+---
+
+# Problem Statement
+
+Managing products and users manually can be inefficient, insecure, and difficult to scale. This API addresses these challenges by providing:
+
+* Centralized product management
+* User authentication and authorization
+* Inventory tracking
+* Data validation
+* Product search and filtering
+* Pagination support
+* Secure access control
+* Scalability for future integrations
+
+---
+
+# Key Features
+
+## Product Management
+
+* Create products
+* Retrieve products
+* Update products
+* Delete products
+* Search products
+* Filter products
+* Pagination support
+
+## User Management
+
+* User registration
+* User login
+* Update user profile
+* Delete user account
+
+## Authentication & Authorization
+
+* JWT Authentication
+* Protected Routes
+* Role-Based Access Control (RBAC)
+
+### Access Control
+
+| Role  | Permissions                     |
+| ----- | ------------------------------- |
+| User  | View products                   |
+| Admin | Create, Update, Delete products |
+| Admin | Manage users                    |
+
+---
+
+# Technology Stack
+
+## Backend
+
+* Node.js
+* Express.js
+
+## Database
+
+* MongoDB Atlas
+
+## Security
+
+* JSON Web Tokens (JWT)
+* bcrypt
+
+## Validation
+
+* Joi
+
+## Configuration
+
+* dotenv
+
+## File Upload
+
+* multer
+
+---
+
+# Features Implemented
+
+* Authentication
+* Authorization
+* Error Handling
+* Middleware
+* CORS
+* Joi Validation
+* Logging
+* Product Search
+* Filtering
+* Pagination
+* Password Hashing (bcrypt)
+* JWT Token Generation
+* Refresh Tokens
+* File Uploads (multer)
+
+---
+
+# Future Enhancements
+
+The following technologies and features are planned for future implementation:
+
+* Email Service (Nodemailer)
+* Logging (Pino / File System)
+* External API Integration (Axios / Fetch)
+* Frontend Integration (React Native)
+* Redis Caching
+* WebSockets (Socket.io)
+* Automated Testing (Jest)
+* Sequelize ORM
+* MySQL Database Support
+
+---
+
+# Project Methodology
+
+## User Model
+
+```javascript
+{
+  name: String,
+  email: String,
+  password: String
+}
+```
+
+## Product Model
+
+```javascript
+{
+  userId: ObjectId,
+  name: String,
+  price: Number,
+  description: String,
+  category: String,
+  inStock: Boolean,
+  createdAt: Date
+}
+```
+
+### User Controllers
+
+* registerUser()
+* loginUser()
+* updateUser()
+* deleteUser()
+
+### Product Controllers
+
+* createProduct()
+* getProducts()
+* updateProduct()
+* deleteProduct()
+
+---
+
+# API Endpoints
+
+## Authentication
+
+### Register User
+
+```http
+POST /api/auth/sign-up
+```
+
+### Login User
+
+```http
+POST /api/auth/login
+```
+
+---
+
+## Users
+
+### Search Users
+
+```http
+GET /api/user/search
+```
+
+### Get User By ID
+
+```http
+GET /api/user/:id
+```
+
+### Update User
+
+```http
+PATCH /api/user/:id
+```
+
+### Delete User
+
+```http
+DELETE /api/user/:id
+```
+
+---
+
+## Products
+
+### Create Product
+
+```http
+POST /api/products
+```
+
+### Get All Products
+
+```http
+GET /api/products
+```
+
+### Update Product
+
+```http
+PUT /api/products/:id
+```
+
+### Delete Product
+
+```http
+DELETE /api/products/:id
+```
+
+---
+
+
+# Installation
+
+## Clone Repository
+
+```bash
+git clone <repository-url>
+cd ecommerce-api
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Start Development Server
+
+```bash
+npm run dev
+```
+
+## Start Production Server
+
+```bash
+npm start
+```
+
+---
+
+# Architecture Diagram
+
+```text
+docs/
+└── architecture-diagram.png
+```
+
+```markdown
+![Architecture Diagram](docs/architecture-diagram.png)
+```
+
+---
+
+# Expected Outcome
+
+The E-Commerce API provides a secure, scalable, and maintainable platform for managing products and users. Through authentication, authorization, validation, search, filtering, and pagination, the system ensures a reliable and efficient user experience.
+
+---
+
+
+# Authors
+
+Developed by **
+Agu Michael
+Japheth
+Promise
+Azeem
+Humble**
+
+
+
+
+
+
+<!-- # E-COMMERCE API
 An E-commerce API (Application Programming Interface) is a set of rules and protocols that enables different software applications to communicate and exchange data within an e-commerce ecosystem. It acts as the bridge between the client-side application (web or mobile) and the database, allowing secure and efficient management of product information.
 
 In this project, we are building an E-commerce API that manages products with the following attributes:
@@ -105,4 +422,4 @@ http://localhost:2026/api/user/:id METHOD: DELETE
 http://localhost:2026/api/products METHOD: POST
 http://localhost:2026/api/products METHOD: GET
 http://localhost:2026/api/products/:id METHOD: PUT
-http://localhost:2026/api/products/:id METHOD: DELETE
+http://localhost:2026/api/products/:id METHOD: DELETE -->
