@@ -24,17 +24,17 @@ const router = express.Router();
 //  PUT      /:id               validateProduct       updateProduct
 //  DELETE   /:id               —                     deleteProduct
 
-router.use(requireAuth)
+
 
 router
   .route('/')
-  .post(requireAdmin, validateProduct, createProduct)
+  .post(requireAuth, requireAdmin, validateProduct, createProduct)
   .get(getAllProducts);
 
 router
   .route('/:id')
   .get(getProductById)
-  .put(requireAdmin, validateProduct, updateProduct)
-  .delete(requireAdmin, deleteProduct);
+  .put(requireAuth, requireAdmin, validateProduct, updateProduct)
+  .delete(requireAuth, requireAdmin, deleteProduct);
 
 module.exports = router;
