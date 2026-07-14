@@ -6,14 +6,20 @@ const {getAllUser, getUserById,
     deleteUserById, editUserById, 
     changeUserRoleById} = require('../Controllers/admin.Controller')
 const requireAuth = require('../Middleware/requireAuth')
-const requireAdmin = require('../Middleware/requireAdmin')
-
+const requireAdmin = require('../Middleware/requireAdmin');
+const refreshToken = require('../Controllers/user.controller.js').refreshToken;
+const upload = require('../Config/multer.js');
+const uploads = require('../Config/multer.js');
 const router = express.Router();
 
 
 router.post('/auth/sign-up', validateUserPost(registerSchema), registerUser, )
 
 router.post('/auth/login', validateUserPost(loginSchema), loginUser)
+
+router.post('/refresh-token', refreshToken)
+
+router.post('/upload', uploads)
 
 router.use(requireAuth)
 

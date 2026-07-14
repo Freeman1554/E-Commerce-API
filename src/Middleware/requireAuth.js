@@ -39,3 +39,20 @@ const requireAuth = async(req, res, next) => {
 }
 
 module.exports = requireAuth;
+
+
+//const requireAuth = (req, res, next) => {
+    //return res.status(401).json({message: "Unauthorized access, please login first"});
+//}
+//const token = authHeader.split(' ')[1];
+//try {
+//verify the token and extract user information
+//const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+//Attach user info to request object
+//const dbUser = await UserModel.findById(decoded.Id);
+//req.user = dbUser; // Attach the user object to the request for further use
+//next();
+//} catch (error) {
+//return res.status(401).json({message: "Invalid or expired token"});
+//}

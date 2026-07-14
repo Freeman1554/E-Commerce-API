@@ -21,8 +21,20 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    isBlocked: {
+        type: Boolean,
+        default: false
+    },
+    loginAttempts: {
+        type: Number,
+        default: 0
     }
 }, {timestamps: true} );
+
+userSchema.index( { unique: true }, {loginAttempts: 1}); // Ensure unique index on email field
+//userSchema.index({ loginAttempts: 1 }); // Ensure index on loginAttempts field
+
 
 const UserModel = mongoose.model("User", userSchema)
 
